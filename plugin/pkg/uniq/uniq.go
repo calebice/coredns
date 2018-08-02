@@ -24,14 +24,11 @@ func (u U) Set(key string, f func() error) {
 	u.u[key] = item{todo, f}
 }
 
-// SetTodo sets key to 'todo' again.
-func (u U) SetTodo(key string) {
-	v, ok := u.u[key]
-	if !ok {
-		return
+// Unset removes function f in U under key if key is present
+func (u U) Unset(key string) {
+	if _, ok := u.u[key]; ok {
+		delete(u.u, key)
 	}
-	v.state = todo
-	u.u[key] = v
 }
 
 // ForEach iterates for u executes f for each element that is 'todo' and sets it to 'done'.

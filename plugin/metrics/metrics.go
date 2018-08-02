@@ -107,7 +107,7 @@ func (m *Metrics) OnRestart() error {
 		return nil
 	}
 
-	uniqAddr.SetTodo(m.Addr)
+	uniqAddr.Unset(m.Addr)
 
 	m.ln.Close()
 	m.lnSetup = false
